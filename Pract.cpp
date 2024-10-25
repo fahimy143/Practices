@@ -1,17 +1,17 @@
 #include <iostream>
-using namespace std;
+#include <thread>
 
-int sum(int k){
-    if(k > 0){
-        return k + sum( k - 1 );
-    }
-    else{
-        return 0;
-    }
-   
+// Function that will run in a thread
+void hello() {
+    std::cout << "Hello from thread!" << std::endl;
 }
 
-int main(){
-    cout << sum(10);
+int main() {
+    // Create a new thread that runs the 'hello' function
+    std::thread t(hello);
+
+    // Wait for the thread to finish before continuing (joining)
+    t.join(); 
+
     return 0;
 }
